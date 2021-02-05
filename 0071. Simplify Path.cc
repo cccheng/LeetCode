@@ -39,3 +39,33 @@ public:
         return result.empty() ? "/" : result;
     }
 };
+
+// v2
+class Solution {
+public:
+    string simplifyPath(string path) {
+        string dentry;
+        stack<string> stack;
+        istringstream iss(path);
+
+        while (getline(iss, dentry, '/')) {
+            if (dentry == "." || dentry.empty())
+                continue;
+            if (dentry == "..") {
+                if (!stack.empty())
+                    stack.pop();
+                continue;
+            }
+            stack.push(dentry);
+        }
+
+        string result;
+        while (!stack.empty()) {
+            result = "/" + stack.top() + result;
+            stack.pop();
+        }
+
+        return result.empty() ? "/" : result;
+    }
+};
+
