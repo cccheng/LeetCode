@@ -31,7 +31,7 @@ public:
                     new_tmp.push_back(tmp[i]->right);
             }
             
-            tmp = new_tmp;
+            tmp.swap(new_tmp);
             result.push_back(inner);
         }
         return result;
