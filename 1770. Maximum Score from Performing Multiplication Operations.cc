@@ -1,13 +1,13 @@
 class Solution {
 public:
     int maximumScore(vector<int>& nums, vector<int>& mul) {
-        int memo[1001][1001] = {};
+        vector<vector<int>> memo(1001, vector<int>(1001, numeric_limits<int>::min()));
 
         function<int(int,int)> dp = [&](int offset, int left) -> int {
             if (offset >= mul.size())
                 return 0;
 
-            if (memo[offset][left])
+            if (memo[offset][left] != numeric_limits<int>::min())
                 return memo[offset][left];
 
             int right = nums.size() - offset + left - 1;
