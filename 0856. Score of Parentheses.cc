@@ -23,3 +23,24 @@ public:
         return score(S, 0, S.size());
     }
 };
+
+// v2
+class Solution {
+public:
+    int scoreOfParentheses(string S) {
+        int cur = 0;
+        stack<int> stack;
+
+        for (int i = 0; i < S.size(); ++i) {
+            if (S[i] == '(') {
+                stack.push(cur);
+                cur = 0;
+            } else {
+                cur = max(1, 2 * cur) + stack.top();
+                stack.pop();
+            }
+        }
+
+        return cur;
+    }
+};
