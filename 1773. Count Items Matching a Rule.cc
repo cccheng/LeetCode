@@ -17,3 +17,19 @@ public:
         return count;
     }
 };
+
+// v2. count_if
+class Solution {
+public:
+    int countMatches(vector<vector<string>>& items, string ruleKey, string ruleValue) {
+        map<string, int> index = {
+            {"type", 0},
+            {"color", 1},
+            {"name", 2}
+        };
+
+        int x = index[ruleKey];
+        return count_if(items.begin(), items.end(),
+                        [&](auto& vec) { return ruleValue == vec[x]; });
+    }
+};
