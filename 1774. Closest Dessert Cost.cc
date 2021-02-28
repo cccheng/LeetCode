@@ -10,16 +10,14 @@ public:
             table[bc] = true;
 
         for (auto tc : toppingCosts) {
-            vector<bool> new_table(table);
-            for (int i = 0; i < table.size(); ++i) {
+            for (int i = table.size() - 1; i >= 0; --i) {
                 if (!table[i])
                     continue;
                 if (i + tc < table.size())
-                    new_table[i + tc] = true;
+                    table[i + tc] = true;
                 if (i + tc + tc < table.size())
-                    new_table[i + tc + tc] = true;
+                    table[i + tc + tc] = true;
             }
-            table.swap(new_table);
         }
 
         for (int i = 0; target - i >= 0 || target + i < table.size(); i++) {
