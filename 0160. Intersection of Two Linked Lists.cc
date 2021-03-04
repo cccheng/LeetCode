@@ -66,3 +66,35 @@ public:
         return nullptr;
     }
 };
+
+// v3
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode* a = headA;
+        ListNode* b = headB;
+
+        if (!a || !b)
+            return nullptr;
+
+        while (a && b) {
+            if (a == b)
+                return a;
+
+            if (a->next)
+                a = a->next;
+            else {
+                a = headB;
+                headB = nullptr;
+            }
+            if (b->next)
+                b = b->next;
+            else {
+                b = headA;
+                headA = nullptr;
+            }
+        }
+
+        return nullptr;
+    }
+};
