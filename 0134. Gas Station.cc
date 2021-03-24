@@ -15,6 +15,7 @@ public:
 
             if (s == nr)
                 return i;
+	    i += s + 1;
         }
 
         return -1;
