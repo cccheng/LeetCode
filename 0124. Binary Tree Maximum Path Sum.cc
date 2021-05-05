@@ -54,3 +54,25 @@ public:
         return mx;
     }
 };
+
+// v2
+class Solution {
+public:
+    int maxPathSum(TreeNode* root) {
+        int mx = numeric_limits<int>::min();
+
+        function<int(TreeNode*)> helper = [&](TreeNode* node) -> int {
+            if (!node)
+                return 0;
+
+            auto left = max(0, helper(node->left));
+            auto right = max(0, helper(node->right));
+
+            mx = max(mx, left + node->val + right);
+            return max(left, right) + node->val;
+        };
+
+        helper(root);
+        return mx;
+    }
+};
